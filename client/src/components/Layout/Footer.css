@@ -1,0 +1,17 @@
+/* Footer.css */
+
+/* Footer container */
+.footer-container {
+    background-color: #83b5e8; /* Dark background color */
+    color: #fdc9c9; /* White text color */
+    padding: 20px; /* Padding around the content */
+    text-align: center; /* Center align text */
+  }
+  
+  /* Copyright text */
+  .footer-copyright {
+    font-size: 14px; /* Font size */
+    margin: 0; /* Remove default margin */
+    padding-top: 10px; /* Top padding */
+  }
+  

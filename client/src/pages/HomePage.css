@@ -1,0 +1,23 @@
+/* Assuming you are using a CSS file for your homepage styles */
+.homepage-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .feature {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .call-to-action {
+    margin-top: 20px;
+  }
+  
