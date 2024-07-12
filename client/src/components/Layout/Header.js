@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { message } from "antd";
+import { toast } from "react-toastify"; // Using toast for notifications instead of antd's message
 
 const Header = () => {
-  
-  const [loginUser, setLoginUser] = useState("");
-
+  const [loginUser, setLoginUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,41 +15,27 @@ const Header = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem("user");
-    message.success("Logout Successfully");
+    toast.success("Logout Successfully");
     navigate("/login");
   };
 
   return (
-    <nav className="navbar navbar-expand-lg">
-      <div className="container-fluid">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" to="/">
-            <h2>CashTrack</h2>
-          </Link>
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <p className="nav-link">{loginUser && loginUser.name}</p>
-            </li>
-            <li className="nav-item">
-              <button className="btn btn-primary" onClick={logoutHandler}>
-                Logout
-              </button>
-            </li>
-          </ul>
+    <nav className="bg-gray-800 text-white p-4 shadow-md">
+      <div className="container mx-auto flex items-center justify-between">
+        <Link to="/" className="text-2xl font-bold">
+          CashTrack
+        </Link>
+        <div className="flex items-center space-x-4">
+          {loginUser && (
+            <p className="text-lg">{loginUser.name}</p>
+          )}
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            onClick={logoutHandler}
+          >
+            Logout
+          </button>
         </div>
-        
       </div>
     </nav>
   );

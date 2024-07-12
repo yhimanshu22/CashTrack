@@ -1,31 +1,26 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
-import './HomePage.css'
+import Carousel from "../components/Corousel"; // Import the Carousel component
 
 const HomePage = () => {
   return (
     <Layout>
-      <div className="homepage-container">
-        <h1>Welcome to Expense Tracker</h1>
-        <p>Track your expenses efficiently and manage your finances better.</p>
-        
-        <div className="features">
-          <div className="feature">
-            <h2>Track Expenses</h2>
-            <p>Easily log and categorize your expenses.</p>
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-4">
+            Welcome to Expense Tracker
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            Track your expenses efficiently and manage your finances better.
+          </p>
+          
+          <Carousel />
+
+          <div className="mt-8">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300">
+              Get Started
+            </button>
           </div>
-          <div className="feature">
-            <h2>Generate Reports</h2>
-            <p>Get detailed reports on your spending habits.</p>
-          </div>
-          <div className="feature">
-            <h2>Set Budgets</h2>
-            <p>Set monthly budgets to control your spending.</p>
-          </div>
-        </div>
-        
-        <div className="call-to-action">
-          <button className="btn btn-primary">Get Started</button>
         </div>
       </div>
     </Layout>

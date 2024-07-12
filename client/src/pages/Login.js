@@ -15,6 +15,7 @@ const Login = () => {
     try {
       setLoading(true);
       const { data } = await axios.post("/users/login", { email, password });
+      console.log(data);
       setLoading(false);
       toast.success("Login success");
       localStorage.setItem(
