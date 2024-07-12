@@ -26,8 +26,7 @@ const Form = ({ formType, submitBtn, formTitle, onSubmit }) => {
     <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
       <form onSubmit={handleFormSubmit}>
         <h1 className="text-2xl font-bold text-black text-center mb-4">{formTitle}</h1>
-        
-        {formType === "register" ? (
+        {formType === "login" ? (
           <>
             <InputType
               labelText="Email"

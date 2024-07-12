@@ -5,8 +5,7 @@ import { notification } from 'antd';
 export const openNotificationSuccess = (message = 'Success', description = 'Operation completed successfully') => {
   notification.success({
     message: message,
-    description: description,
-    duration: 2, // Duration in seconds
+    duration: 1, 
   });
 };
 
@@ -15,6 +14,6 @@ export const openNotificationError = (message = 'Error', description = 'Somethin
   notification.error({
     message: message,
     description: description,
-    duration: 2, // Duration in seconds
+    duration: 1,
   });
 };

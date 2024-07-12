@@ -35,17 +35,17 @@ const Carousel = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-full h-64 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-6 flex items-center justify-center"
+            className="flex-shrink-0 w-full h-64 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-6 flex items-center justify-center rounded-lg shadow-lg"
           >
             <div className="text-center">
-              <h2 className="text-xl font-semibold mb-2">{slide.title}</h2>
-              <p>{slide.description}</p>
+              <h2 className="text-4xl font-extrabold text-gray-700 mb-2">{slide.title}</h2>
+              <p className="text-lg font-semibold text-black">{slide.description}</p>
             </div>
           </div>
         ))}
       </div>
       {/* Optional: Add navigation dots */}
-      <div className="absolute bottom-4 left-1/2 transform rounde-lg -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}

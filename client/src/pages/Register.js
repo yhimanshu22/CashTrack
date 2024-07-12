@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
-import Form from "../components/Form"; // Import your custom Form component
-import { openNotificationSuccess, openNotificationError } from "../components/Notification"; // Import notification functions
+import Form from "../components/Form"; 
+import { openNotificationSuccess, openNotificationError } from "../components/Notification"; 
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ const Register = () => {
       //console.log(data);
 
       setLoading(false);
-      openNotificationSuccess('User Registered successfully'); // Use notification function
+      openNotificationSuccess('User Registered successfully'); 
       localStorage.setItem(
         "user",
         JSON.stringify({ ...data.user, password: "" })
