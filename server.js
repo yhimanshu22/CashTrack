@@ -1,30 +1,31 @@
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const dotenv = require("dotenv");
-const colors = require("colors");
-const connectDb = require("./config/connectDb");
-// config dot env file
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+import colors from 'colors';
+import connectDb from './config/connectDb.js'; // Note the '.js' extension
+
+// Load environment variables from .env file
 dotenv.config();
 
-//databse call
+// Connect to the database
 connectDb();
 
-//rest object
+// Initialize express application
 const app = express();
 
-//middlewares
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(cors());
+// Middleware
+app.use(morgan('dev')); // Logs HTTP requests to the console
+app.use(express.json()); // Parses incoming JSON requests
+app.use(cors()); // Enables Cross-Origin Resource Sharing
 
-//routes
-app.use("/api/v1/users", require("./routes/userRoute"));
+// Routes
+app.use('/api/v1/users', (await import('./routes/userRoute.js')).default); // Use dynamic import with ES module syntax
 
-//port
-const PORT = 8080 || process.env.PORT;
+// Define the port to listen on
+const PORT = process.env.PORT || 8080; // Use PORT from environment variables if available, otherwise default to 8080
 
-//listen server
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`.green); // Added color for better console output visibility
 });

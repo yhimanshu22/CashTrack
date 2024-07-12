@@ -1,12 +1,13 @@
-const userModel = require('../models/userModel');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
+import userModel from '../models/userModel.js'; // Importing the user model
+import bcrypt from 'bcrypt'; // Importing bcrypt for hashing passwords
+import jwt from 'jsonwebtoken'; // Importing jsonwebtoken for generating tokens
 
 // Register Callback
-const registerController = async (req, res) => {
+export const registerController = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+
+    console.log('Received registration request:', { name, email, password });
 
     // Validate required fields
     if (!name || !email || !password) {
@@ -27,6 +28,7 @@ const registerController = async (req, res) => {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('Hashed password:', hashedPassword);
 
     // Create new user
     const newUser = new userModel({
@@ -37,6 +39,7 @@ const registerController = async (req, res) => {
 
     // Save the new user
     await newUser.save();
+    console.log('User saved successfully:', newUser);
 
     // Respond with success
     res.status(201).json({
@@ -53,7 +56,7 @@ const registerController = async (req, res) => {
 };
 
 // Login Callback
-const loginController = async (req, res) => {
+export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -104,5 +107,3 @@ const loginController = async (req, res) => {
     });
   }
 };
-
-module.exports = { registerController, loginController };

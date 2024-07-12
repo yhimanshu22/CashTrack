@@ -1,7 +1,8 @@
 {
-  "name": "Expanse-Management-System",
+  "name": "ExpenseManagement",
   "version": "1.0.0",
   "description": "expanse tracker app",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,7 +11,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
-  "author": "Techinfoyt",
+  "author": "Himanshu Yadav",
+  
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",

@@ -34,6 +34,7 @@ const Login = () => {
     <>
       <div className="resgister-page ">
         {loading && <Spinner />}
+        
         <Form layout="vertical" onFinish={submitHandler}>
           <h1>Login Form</h1>
 
