@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
-import Form from "../components/Form"; // Import your custom Form component
-import { toast } from "react-toastify";
+import Form from "../components/Form";
+import { openNotificationSuccess, openNotificationError } from "../components/Notification";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const Login = () => {
       const { data } = await axios.post("/users/login", { email, password });
       console.log(data);
       setLoading(false);
-      toast.success("Login success");
+      openNotificationSuccess("Login success");
       localStorage.setItem(
         "user",
         JSON.stringify({ ...data.user, password: "" })
@@ -25,7 +25,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setLoading(false);
-      toast.error("Something went wrong");
+      openNotificationError("Something went wrong");
     }
   };
 

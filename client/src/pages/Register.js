@@ -1,26 +1,24 @@
-
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import Form from "../components/Form"; // Import your custom Form component
-import { toast } from "react-toastify";
+import { openNotificationSuccess, openNotificationError } from "../components/Notification"; // Import notification functions
 
 const Register = () => {
-
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Handle form submission
-  const submitHandler = async (email, password,name) => {
+  const submitHandler = async (email, password, name) => {
     try {
       setLoading(true);
-      
-      const { data } = await axios.post("/users/register", { email, password,name });
-      console.log(data)
+
+      const { data } = await axios.post("/users/register", { email, password, name });
+      //console.log(data);
 
       setLoading(false);
-      toast.success("User Registered success");
+      openNotificationSuccess('User Registered successfully'); // Use notification function
       localStorage.setItem(
         "user",
         JSON.stringify({ ...data.user, password: "" })
@@ -28,7 +26,7 @@ const Register = () => {
       navigate("/");
     } catch (error) {
       setLoading(false);
-      toast.error("Something went wrong");
+      openNotificationError('Something went wrong'); // Use notification function
     }
   };
 
@@ -41,17 +39,15 @@ const Register = () => {
 
   return (
     <>
-      <div className="login-page">
-        {loading && <Spinner />}
+      {loading && <Spinner />}
 
-        <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-800">
-          <Form
-            formTitle="Join CashTrack"
-            submitBtn="Register"
-            formType="register"
-            onSubmit={submitHandler}
-          />
-        </div>
+      <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-800">
+        <Form
+          formTitle="Join CashTrack"
+          submitBtn="Register"
+          formType="register"
+          onSubmit={submitHandler}
+        />
       </div>
     </>
   );

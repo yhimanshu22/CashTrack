@@ -2,14 +2,12 @@ import React from "react";
 
 const Spinner = () => {
   return (
-    <>
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    </>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="w-16 h-16 border-4 border-t-4 border-blue-500 dark:border-blue-400 border-solid rounded-full animate-spin"></div>
+    </div>
   );
 };
 
 export default Spinner;
+
+

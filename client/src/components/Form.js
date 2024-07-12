@@ -26,7 +26,8 @@ const Form = ({ formType, submitBtn, formTitle, onSubmit }) => {
     <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
       <form onSubmit={handleFormSubmit}>
         <h1 className="text-2xl font-bold text-black text-center mb-4">{formTitle}</h1>
-        {formType === "login" ? (
+        
+        {formType === "register" ? (
           <>
             <InputType
               labelText="Email"
@@ -77,18 +78,18 @@ const Form = ({ formType, submitBtn, formTitle, onSubmit }) => {
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
             {formType === "login" ? (
               <div className="mt-4 ml-3">
-                <p className="text-gray-700 dark:text-gray-600 text-center md:text-left">
+                <p className="text-gray-700 text-lg dark:text-gray-600 text-center md:text-left">
                   Not registered yet?{" "}
-                  <Link to="/register" className="text-blue-500 hover:underline font-medium">
+                  <Link to="/register" className="text-lg text-blue-500 hover:underline font-medium">
                     Register here!
                   </Link>
                 </p>
               </div>
             ) : (
               <div className="flex justify-center mt-4 ml-3">
-                <p className="text-gray-400 dark:text-gray-600 text-center md:text-left">
+                <p className="text-gray-400 text-lg dark:text-gray-600 text-center md:text-left">
                   Already a user?{" "}
-                  <Link to="/login" className="text-blue-500 hover:underline ml-1 font-medium">
+                  <Link to="/login" className="text-blue-500 text-lg hover:underline ml-1 font-medium">
                     Login here!
                   </Link>
                 </p>
