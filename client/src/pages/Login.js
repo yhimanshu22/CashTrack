@@ -1,18 +1,22 @@
+
 import React, { useState, useEffect } from "react";
-import { Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
+import Form from "../components/Form"; // Import your custom Form component
+import { toast } from "react-toastify";
+
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  //from submit
-  const submitHandler = async (values) => {
+
+  // Handle form submission
+  const submitHandler = async (email, password) => {
     try {
       setLoading(true);
-      const { data } = await axios.post("/users/login", values);
+      const { data } = await axios.post("/users/login", { email, password });
       setLoading(false);
-      message.success("login success");
+      toast.success("Login success");
       localStorage.setItem(
         "user",
         JSON.stringify({ ...data.user, password: "" })
@@ -20,38 +24,31 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setLoading(false);
-      message.error("something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
-  //prevent for login user
+  // Redirect logged-in users
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/");
     }
   }, [navigate]);
+
   return (
     <>
-      <div className="resgister-page ">
+      <div className="login-page">
         {loading && <Spinner />}
+
+        <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-800">
+          <Form
+            formTitle="Login Form"
+            submitBtn="Login"
+            formType="login"
+            onSubmit={submitHandler}
+          />
         
-        <Form layout="vertical" onFinish={submitHandler}>
-          <h1>Login Form</h1>
-
-          <Form.Item label="Email" name="email">
-            <Input type="email" />
-          </Form.Item>
-
-          <Form.Item label="Password" name="password">
-            <Input type="password" />
-          </Form.Item>
-
-          <div className="d-flex justify-content-between p-4">
-            <div className="p-3"><Link to="/register">Not a user ? Cleck Here to regsiter</Link></div>
-            <button className="btn btn-primary">Login</button>
-          </div>
-          
-        </Form>
+        </div>
       </div>
     </>
   );
